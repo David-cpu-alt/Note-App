@@ -1,11 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import AuthStack from './src/navigators/AuthStack/AuthStack'
 
 const App = () => {
+  const Stack = createNativeStackNavigator();
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='Authscreen' component={AuthStack} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 

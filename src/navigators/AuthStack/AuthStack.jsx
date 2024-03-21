@@ -1,0 +1,19 @@
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Splash from '../../screens/Authscreen/Splash';
+import Signin from '../../screens/Authscreen/Signin';
+
+const AuthStack = () => {
+    const Stack = createNativeStackNavigator();
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="splash" component={Splash} />
+            <Stack.Screen name="signin" component={Signin} />
+        </Stack.Navigator>
+    )
+}
+
+export default AuthStack
+
+const styles = StyleSheet.create({})
