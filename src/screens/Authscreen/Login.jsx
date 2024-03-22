@@ -1,19 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import React, { useState } from 'react'
 import Forminput from '../../components/input/Forminput'
-import { SIZES } from '../../constants'
 import FormButton from '../../components/Button/FormButton'
+import { COLORS, SIZES, images } from '../../constants'
 import { useNavigation } from '@react-navigation/native'
 
-
-const Signin = () => {
+const Login = () => {
     const [name, setName] = useState("")
     const [password, SetPassword] = useState("")
-
     const navigation = useNavigation();
     return (
-        <View style={styles.page} >
+        <View style={styles.page}>
 
+            <Image source={images.pass} style={{ height: SIZES.height * 0.3, width: SIZES.width, marginTop: SIZES.h3, resizeMode: "contain" }} />
             <Forminput title='Name'
                 placeholder={"Enter your name"}
                 value={name}
@@ -25,24 +24,24 @@ const Signin = () => {
                 onChangeText={SetPassword}
                 keyboardType={"numeric"} />
             <View style={{ marginTop: SIZES.h3 * 3 }}>
-                <FormButton title={"create account"}
-                    onPress={() => navigation.navigate("login")} />
+                <FormButton title={"Log in"}
+                    onPress={() => navigation.navigate("createnote")} />
 
             </View>
-
-
         </View>
     )
 }
 
-export default Signin
+export default Login
 
 const styles = StyleSheet.create({
     page: {
-        paddingHorizontal: SIZES.h3,
+        padding: SIZES.h3,
         // justifyContent: "center",
         flex: 1,
-        padding: SIZES.h3 * 4.8
+
+        backgroundColor: "white",
+
 
     }
 })
