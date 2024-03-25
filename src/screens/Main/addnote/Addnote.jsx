@@ -1,21 +1,43 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import { COLORS, SIZES } from '../../../constants'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import FormButton from '../../../components/Button/FormButton'
+import { useNavigation } from '@react-navigation/native'
 
 const Addnote = () => {
-    // const [title, setTitle] = useState("")
-    // console.log(title)
+    const [title, setTitle] = useState("")
+
     const [note, setNote] = useState("")
+    const handleSaveNote = async () => {
+        try {
+            await AsyncStorage.setItem("title", title)
+            await AsyncStorage.setItem("note", note)
+            navigation.navigate("createnote")
+        } catch (error) {
+            console.log("Error during saving note is", error)
+        }
+    }
+    const navigation = useNavigation();
     return (
         <View style={styles.page}>
             <Text></Text>
             <TextInput
                 style={styles.textInput}
-                placeholder='Enter your title' />
+                placeholder='Enter your title'
+                value={title}
+                onChangeText={setTitle} />
 
             <TextInput
                 style={styles.textInput2}
-                placeholder='Enter your note' />
+                placeholder='Enter your note'
+                value={note}
+                onChangeText={setNote}
+                multiline />
+            <View style={{ marginTop: SIZES.width }}>
+                <FormButton title={"Add note"} onPress={handleSaveNote} />
+            </View>
+
         </View>
     )
 }

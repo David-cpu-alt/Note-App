@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 const Createnote = () => {
     const navigation = useNavigation();
     const [storedName, setStoredName] = useState("")
+    const [storedNote, setStoredNote] = useState([])
 
     useEffect(() => {
         getname();
@@ -20,6 +21,13 @@ const Createnote = () => {
             }
         } catch (error) {
             console.log("Error during getting name", error)
+        }
+    }
+    const getNote = async () => {
+        try {
+
+        } catch (error) {
+            console.log("Error during fetching note", error)
         }
     }
 
