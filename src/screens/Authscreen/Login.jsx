@@ -4,6 +4,7 @@ import Forminput from '../../components/input/Forminput'
 import FormButton from '../../components/Button/FormButton'
 import { COLORS, SIZES, images } from '../../constants'
 import { useNavigation } from '@react-navigation/native'
+import Header from '../../components/Header/Header'
 
 const Login = () => {
     const [name, setName] = useState("")
@@ -11,7 +12,7 @@ const Login = () => {
     const navigation = useNavigation();
     return (
         <View style={styles.page}>
-
+            <Header />
             <Image source={images.pass} style={{ height: SIZES.height * 0.3, width: SIZES.width, marginTop: SIZES.h3, resizeMode: "contain" }} />
             <Forminput title='Name'
                 placeholder={"Enter your name"}

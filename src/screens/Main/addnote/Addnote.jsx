@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { COLORS, SIZES } from '../../../constants'
 
 const Addnote = () => {
-    const [title, setTitle] = useState("")
+    // const [title, setTitle] = useState("")
     // console.log(title)
     const [note, setNote] = useState("")
     return (

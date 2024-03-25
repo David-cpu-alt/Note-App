@@ -1,11 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { COLORS, SIZES } from '../../constants'
+import { COLORS, SIZES, FONTS } from '../../constants'
 
 const FormButton = ({ title, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress} style={styles.button}>
-            <Text>{title}</Text>
+            <Text style={{ ...FONTS.body2, color: COLORS.white }}>{title}</Text>
         </TouchableOpacity>
 
 
