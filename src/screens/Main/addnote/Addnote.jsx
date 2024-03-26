@@ -7,13 +7,19 @@ import { useNavigation } from '@react-navigation/native'
 
 const Addnote = () => {
     const [title, setTitle] = useState("")
-
     const [note, setNote] = useState("")
+    const [notes, setNotes] = useState("")
     const handleSaveNote = async () => {
         try {
-            await AsyncStorage.setItem("title", title)
-            await AsyncStorage.setItem("note", note)
+            const newNote = { title, note };
+            setNotes([...notes, newNote]);
             navigation.navigate("createnote")
+
+            await AsyncStorage.setItem("notes", JSON.stringify([...notes, newNote]))
+
+            setTitle('');
+            setNote('');
+
         } catch (error) {
             console.log("Error during saving note is", error)
         }

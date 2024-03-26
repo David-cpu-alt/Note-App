@@ -5,6 +5,7 @@ import FormButton from '../../components/Button/FormButton'
 import { COLORS, SIZES, images } from '../../constants'
 import { useNavigation } from '@react-navigation/native'
 import Header from '../../components/Header/Header'
+import AppStack from '../../navigators/AppStack/AppStack'
 
 const Login = () => {
     const [name, setName] = useState("")
@@ -26,7 +27,7 @@ const Login = () => {
                 keyboardType={"numeric"} />
             <View style={{ marginTop: SIZES.h3 * 3 }}>
                 <FormButton title={"Log in"}
-                    onPress={() => navigation.navigate("createnote")} />
+                    onPress={() => navigation.navigate("AppStackScreen", { screen: "createnote" })} />
 
             </View>
         </View>
