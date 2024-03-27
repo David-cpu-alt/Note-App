@@ -3,12 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { COLORS, SIZES, icons, images, FONTS } from '../../../constants'
 import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useSelector } from 'react-redux'
 
 
 const Createnote = () => {
-    const navigation = useNavigation();
+    const noteData = useSelector(state => state?.note)
+
+    console.log('noteeeeeeeeeeeeeee', noteData)
+
     const [storedName, setStoredName] = useState("")
-    const [storedNote, setStoredNote] = useState([])
+
 
     useEffect(() => {
         getname();
@@ -27,16 +31,16 @@ const Createnote = () => {
     const getNote = async () => {
         try {
             const cool = await AsyncStorage.getItem("notes")
-            if (cool !== null) {
-                const notesArray = JSON.parse(cool)
-                setStoredNote(notesArray)
-            }
+            // if (cool !== null) {
+            //     const notesArray = JSON.parse(cool)
+            //     setStoredNote(notesArray)
+            // }
 
         } catch (error) {
             console.log("Error during fetching note", error)
         }
     }
-
+    const navigation = useNavigation();
     return (
         <View style={styles.page}>
 
@@ -46,11 +50,12 @@ const Createnote = () => {
             </View>
             <View style={{ marginTop: SIZES.h3 }}>
                 <FlatList
-                    data={storedNote}
+                    data={noteData}
+
                     renderItem={({ item, index }) => {
                         return (
-                            <TouchableOpacity onPress={() => navigation.navigate("addnote")} style={{ padding: SIZES.h3, backgroundColor: COLORS.blue }}>
-                                <Text> {item.title}</Text>
+                            <TouchableOpacity onPress={() => navigation.navigate("notedetails", { item })} style={{ padding: SIZES.h3, backgroundColor: COLORS.blue, marginBottom: SIZES.h3 }}>
+                                <Text>{item.title}</Text>
                             </TouchableOpacity>
                         )
                     }} />

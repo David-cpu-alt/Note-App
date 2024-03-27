@@ -4,21 +4,34 @@ import { COLORS, SIZES } from '../../../constants'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import FormButton from '../../../components/Button/FormButton'
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch } from 'react-redux'
+import { addNote } from '../../../redux/actions/noteAction'
 
 const Addnote = () => {
+    const dispatch = useDispatch();
     const [title, setTitle] = useState("")
     const [note, setNote] = useState("")
-    const [notes, setNotes] = useState("")
+
     const handleSaveNote = async () => {
         try {
-            const newNote = { title, note };
-            setNotes([...notes, newNote]);
-            navigation.navigate("createnote")
+            if (!title) {
+                console.log('title is empty')
+            } else if (!note) {
+                console.log('Note is empty')
+            } else {
+                const body = { note, title };
 
-            await AsyncStorage.setItem("notes", JSON.stringify([...notes, newNote]))
+                dispatch(addNote({ ...body }))
+                navigation.navigate("createnote")
 
-            setTitle('');
-            setNote('');
+            }
+            // const newNote = { title, note };
+            // const updatedNote = [...notes, newNote];
+            // setNotes(updatedNote)
+            // await AsyncStorage.setItem("notes", JSON.stringify(updatedNote))
+
+            // setTitle('');
+            // setNote('');
 
         } catch (error) {
             console.log("Error during saving note is", error)
@@ -39,7 +52,7 @@ const Addnote = () => {
                 placeholder='Enter your note'
                 value={note}
                 onChangeText={setNote}
-                multiline />
+                multiline={true} />
             <View style={{ marginTop: SIZES.width }}>
                 <FormButton title={"Add note"} onPress={handleSaveNote} />
             </View>

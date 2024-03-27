@@ -2,9 +2,12 @@ import { StyleSheet, Text, View, SafeAreaView, ImageBackground } from 'react-nat
 import React, { useEffect } from 'react'
 import { COLORS, SIZES, images } from '../../constants'
 import { useNavigation } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
 
 
 const Splash = () => {
+    const selector = useSelector(state => state?.note)
+    console.log('.......', selector)
     useEffect(() => {
         const timer = setTimeout(() => {
 
