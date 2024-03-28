@@ -16,7 +16,7 @@ const Createnote = () => {
 
     useEffect(() => {
         getname();
-        getNote()
+        // getNote()
     }, [navigation])
     const getname = async () => {
         try {
@@ -28,18 +28,7 @@ const Createnote = () => {
             console.log("Error during getting name", error)
         }
     }
-    const getNote = async () => {
-        try {
-            const cool = await AsyncStorage.getItem("notes")
-            // if (cool !== null) {
-            //     const notesArray = JSON.parse(cool)
-            //     setStoredNote(notesArray)
-            // }
 
-        } catch (error) {
-            console.log("Error during fetching note", error)
-        }
-    }
     const navigation = useNavigation();
     return (
         <View style={styles.page}>
@@ -53,6 +42,7 @@ const Createnote = () => {
                     data={noteData}
 
                     renderItem={({ item, index }) => {
+                        console.log('///////////', item)
                         return (
                             <TouchableOpacity onPress={() => navigation.navigate("notedetails", { item })} style={{ padding: SIZES.h3, backgroundColor: COLORS.blue, marginBottom: SIZES.h3 }}>
                                 <Text>{item.title}</Text>
